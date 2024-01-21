@@ -1,7 +1,7 @@
 on: [push, pull_request]
-name: upgrade
+name: main
 jobs:
-  upgrade:
+  main:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
@@ -20,5 +20,5 @@ jobs:
           repository: 'pkp'
           branch: 'main'
           #validate: true
-          #test: true
+          test: true
           #upgrade: true
