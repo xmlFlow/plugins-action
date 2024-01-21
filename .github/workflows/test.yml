@@ -1,10 +1,11 @@
 on:
-  push:
+  workflow_dispatch:
     inputs:
       level:
         description: 'level to process'
         type: number
         required: false
+
 
 jobs:
   test:
@@ -13,8 +14,6 @@ jobs:
       - name: Print variable if not empty
         if: "${{ github.event.inputs.level != '' }}"
         run: echo Level value is ${{ github.event.inputs.level }}
-        with:
-            level: 1
 
       - name: Print message if empty
         if: "${{ github.event.inputs.level == '' }}"
