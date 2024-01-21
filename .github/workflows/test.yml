@@ -2,7 +2,7 @@ on:
   workflow_dispatch:
     inputs:
       level:
-        description: 'level to process'
+        description: 'levelto process'
         type: number
         required: false
 
