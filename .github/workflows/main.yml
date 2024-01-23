@@ -14,7 +14,7 @@ jobs:
         php-version: [ '8.1' ,'8.2']
 
     steps:
-      - uses: xmlFlow/github-actions@v1
+      - uses: xmlFlow/pkp-github-actions@v1
         with:
           application:  ${{matrix.application}}
           repository: 'pkp'
