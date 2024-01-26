@@ -1,24 +1,22 @@
 on: [push, pull_request]
-name: main
+name: pkp-lib
 jobs:
-  main:
+  pkp-lib:
     runs-on: ubuntu-latest
     strategy:
       fail-fast: false
       matrix:
-        #application: ['ojs']
-        #database: ['mysql']
-        #php-version: [ '8.1']
         application: ['omp','ojs','ops']
-        database: ['pgsql','mysql']
-        php-version: [ '8.1' ,'8.2']
+        database: ['pgsql']
+        php-version: [ '8.1']
 
+    name: pkp-lib
     steps:
       - uses: xmlFlow/pkp-github-actions@v1
         with:
           application:  ${{matrix.application}}
-          repository: 'pkp'
+          repository: pkp
           branch: 'main'
-          #validate: true
+          #validation: true
           test: true
           #upgrade: true
