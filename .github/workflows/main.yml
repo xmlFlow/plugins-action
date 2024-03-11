@@ -1,24 +1,11 @@
-on: [push, pull_request]
-name: main
 jobs:
-  main:
+  test:
     runs-on: ubuntu-latest
-    strategy:
-      fail-fast: false
-      matrix:
-        #application: ['ojs']
-        #database: ['mysql']
-        #php-version: [ '8.1']
-        application: ['omp','ojs','ops']
-        database: ['pgsql','mysql']
-        php-version: [ '8.1' ,'8.2']
-
     steps:
-      - uses: xmlFlow/pkp-github-actions@v1
-        with:
-          application:  ${{matrix.application}}
-          repository: 'pkp'
-          branch: 'main'
-          #validate: true
-          test: true
-          #upgrade: true
+      - name: Print variable if not empty
+        if: "${{ github.event.inputs.level != '' }}"
+        run: echo Level value is ${{ github.event.inputs.level }}
+
+      - name: Print message if empty
+        if: "${{ github.event.inputs.level == '' }}"
+        run: echo Level value is empty
