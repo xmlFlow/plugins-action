@@ -1,20 +1,17 @@
-on:
-  workflow_dispatch:
-    inputs:
-      level:
-        description: 'levelto process'
-        type: number
-        required: false
+name: Octo Organization CI
 
+on:
+  push:
+    branches: [ $default-branch ]
+  pull_request:
+    branches: [ $default-branch ]
 
 jobs:
-  test:
+  build:
     runs-on: ubuntu-latest
-    steps:
-      - name: Print variable if not empty
-        if: "${{ github.event.inputs.level != '' }}"
-        run: echo Level value is ${{ github.event.inputs.level }}
 
-      - name: Print message if empty
-        if: "${{ github.event.inputs.level == '' }}"
-        run: echo Level value is empty
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Run a one-line script
+        run: echo Hello from Octo Organization
