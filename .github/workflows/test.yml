@@ -1,15 +1,28 @@
-name: Octo Organization CI
-on: [push, pull_request]
-
+name: Composite Images
+on:
+  push:
+    branches:
+      - main
 jobs:
-  build:
+  composite:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - name: Checkout code
+        uses: actions/checkout@v2
 
-      - name: Run a one-line script
-        run: echo Hello from Octo Organization
-        env: 
-          test: ${{secrets.test}}
-          DATASETS_ACCESS_KEY:  ${{secrets.DATASETS_ACCESS_KEY}}
-        
+      - name: Install ImageMagick
+        run: ./install_imagemagick.sh
+      
+      - name: Composite Images
+        env:
+          LOGO_PATH: ${{ secrets.LOGO_PATH }}
+          BACKGROUND_PATH: ${{ secrets.BACKGROUND_PATH }}
+        run: |
+          # Composite images using ImageMagick
+          composite -gravity center "$LOGO_PATH" "$BACKGROUND_PATH" output.png
+
+      - name: Save Composite Image as Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: composite-image
+          path: output.png
