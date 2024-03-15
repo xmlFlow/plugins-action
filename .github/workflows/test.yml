@@ -10,5 +10,6 @@ jobs:
 
       - name: Run a one-line script
         run: echo Hello from Octo Organization
-        with: ${{secrets.test}}
+        with: 
+          test: ${{secrets.test}}
         
