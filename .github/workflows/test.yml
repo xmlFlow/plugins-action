@@ -1,8 +1,5 @@
 name: Composite Images
-on:
-  push:
-    branches:
-      - main
+on: [push, pull_request]
 jobs:
   composite:
     runs-on: ubuntu-latest
