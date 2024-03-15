@@ -12,4 +12,5 @@ jobs:
         run: echo Hello from Octo Organization
         env: 
           test: ${{secrets.test}}
+          DATASETS_ACCESS_KEY:  ${{secrets.DATASETS_ACCESS_KEY}}
         
